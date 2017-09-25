@@ -17,10 +17,9 @@ def svm_grid(X, y, scorer='accuracy', k=5, is_standard=False):
             ('scl', StandardScaler()),
             ('svm', SVC(random_state=1))
         ])
-    
+
     if is_standard is False:
-        if is_standard is True:
-            pipe_svm = Pipeline([
+        pipe_svm = Pipeline([
             ('svm', SVC(random_state=1))
         ])
 

@@ -12,13 +12,15 @@ import os
 
 output = 'feature_values.csv'
 
+
 def extracting(word_class=["形容詞"], max_features=30, vector='tfidf', comment_directory_path='./comment_source/', output_feature_name='feature_values.csv'):
-    
+
     files = glob.glob(comment_directory_path + '*.txt')
     texts = list(map(read_text, files))
     index = list(map(get_name, files))
 
-    cp = CommentParce(word_class=word_class, max_features=max_features, vector=vector)
+    cp = CommentParce(word_class=word_class,
+                      max_features=max_features, vector=vector)
 
     values = cp.fit_parce(texts)
     df = pd.DataFrame(values, index=index, columns=cp.feature_names)
@@ -27,8 +29,10 @@ def extracting(word_class=["形容詞"], max_features=30, vector='tfidf', commen
     with open(output_feature_name, 'w', encoding='utf_8_sig') as f:
         df.to_csv(f)
 
+
 def main():
     pass
+
 
 def read_text(file):
     with open(file, 'r') as f:
